@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows,tikzmark,shadows}
+\usetikzmarklibrary{listings}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\tikzset{
+  comment/.style={
+    draw,
+    fill=green!20, %% 20% fill with green
+    text=black, %% ballon text shoukd be black 
+    rounded corners,
+    drop shadow,
+    align=left,
+  },
+}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=1mm,
+  belowskip=1mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\normalsize\ttfamily},
+  numbers=left,
+  numberstyle=\normalsize\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+%[language=Python, numbers=left, breakatwhitespace=true, breaklines=true]
+
+%textbox command 
+\newcommand\tbox[1]{\tikz[baseline]{\node[inner sep=2pt, draw=black, dashed, thick, anchor=text, rectangle] {#1};}}
+\newsavebox{\suspcommbox}
+\newsavebox{\defadmbox}
+\newsavebox{\hardcodebox}
+\newsavebox{\secrkeybox}
+\newsavebox{\bindingbox}
+%\newsavebox{\missdefabox}
+\newsavebox{\basebox}
+\newsavebox{\emptypassbox}
+\newsavebox{\httpbox}
+\newsavebox{\mdbox}
+\newsavebox{\hardcodeuserbox}
+
+%\setbox\tempbox=\hbox{\verb$``z %d = %lf\n''$}
+
+\setbox\suspcommbox=\hbox{\verb$# https://bugs.launchpad.net/ubuntu/+source/libguestfs/+bug/1615337$}
+\setbox\defadmbox=\hbox{\verb$$\$power\_username$ = `admin'$}
+\setbox\hardcodebox=\hbox{\verb$$\$power\_password$ = `admin'$}
+\setbox\secrkeybox=\hbox{\verb$`/etc/ca/vmware-ca.pem'$}
+\setbox\bindingbox=\hbox{\verb$`0.0.0.0'$}
+%\setbox\missdefabox=\hbox{\verb$$case \$::osfamily \{$$}
+\setbox\basebox=\hbox{\verb$base64(`encode', $pw\_hash(\$admin\_password))$$}
+\setbox\emptypassbox=\hbox{\verb$password => `'$}
+\setbox\httpbox=\hbox{\verb$`http://127.0.0.1:35357/v2.0'$} 
+\setbox\mdbox=\hbox{\verb$$ht\_md5(\$power\_password)$$}
+\setbox\hardcodeuserbox=\hbox{\verb$`admin-user'$}
+
+\begin{document}
+
+\begin{lstlisting}[name=ansi, escapechar=!]
+!\tbox{\usebox{\suspcommbox}}!
+- name: Playbook to setup MySQL 
+    mysql_username: "root"
+    mysql_password: ""
+    auth_url: "http://127.0.0.1:5000/v3"
+    protocol: "tcp"
+    remote_ip_prefix: "0.0.0.0/0"
+- name: Add nginx repo to yum sources list
+    yum_repository:
+      name: "nginx"
+      file: "nginx"
+      baseurl: "http://mirror.centos.org/centos/7/os/$basearch/"
+      gpgcheck: "no" 
+    
+\end{lstlisting}
+
+
+
+\begin{tikzpicture}[remember picture, overlay, >=stealth']
+\draw[<-, dashed, red, thick] (pic cs:line-ansi-1-end) ++(0.5em, 1.0ex) -| +(2.0, 0.5) node[below, comment, thick] {Suspicious comment};
+\draw[<-, dashed, red, thick] (pic cs:line-ansi-3-end) ++(0.5em, 1.0ex) -| +(4.0, 0.5) node[below, comment, thick] {Hard-coded secret (username)};
+\draw[<-, dashed, red, thick] (pic cs:line-ansi-4-end) ++(0.5em, 1.0ex) -| +(10.0, 0.5) node[above, comment, thick] {Empty password};
+\draw[<-, dashed, red, thick] (pic cs:line-ansi-5-end) ++(0.5em, 1.0ex) -| +(3.0, 0.25) node[below, comment, thick] {Use of HTTP without TLS};
+\draw[<-, dashed, red, thick] (pic cs:line-ansi-7-end) ++(0.5em, 1.0ex) -| +(5.0, 0.25) node[below, comment, thick] {Invalid IP address binding};
+\draw[<-, dashed, red, thick] (pic cs:line-ansi-13-end) ++(0.5em, 1.0ex) -| +(10.5, 0.25) node[below, comment, thick] {No integrity check};
+\end{tikzpicture}
+
+
+\end{document}
+
+
+    

@@ -1,0 +1,96 @@
+\documentclass{article}
+\usepackage{listings}
+\usepackage{tikz}
+\usetikzlibrary{arrows,tikzmark,shadows}
+\usetikzmarklibrary{listings}
+\usepackage{color}
+\usepackage[T1]{fontenc}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\tikzset{
+  comment/.style={
+    draw,
+    fill=green!20, %% 20% fill with green
+    text=black, %% ballon text shoukd be black 
+    rounded corners,
+    drop shadow,
+    align=left,
+  },
+}
+
+\lstset{frame=tb,
+  language=Python,
+  aboveskip=1mm,
+  belowskip=1mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\normalsize\ttfamily},
+  numbers=left,
+  numberstyle=\normalsize\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=2
+}
+
+
+\begin{document}
+
+\begin{lstlisting}[name=gist, escapechar=!]
+	file_name = input()
+	exec(f'sudo mkdir {file_name}')
+	os.chmod('/etc/hosts', 0o777)
+	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.bind(('0.0.0.0', 31137))
+	if username == 'root' and password == '123':
+		logIn()
+	username = 'root'
+	password = ''
+	initServer('127.0.0.1').simple_bind_s(username, password)
+	hardcoded_tmp_directory =
+	 ['/tmp', '/var/tmp', '/dev/shm']
+	try: do_some_stuff()
+	except: pass #(or continue)
+		
+	app.run(debug=True)
+	requests.get('https://gmail.com', 
+		verify=False)
+	
+	requests.get('http://www.apache.org')
+	service_name = input()
+	subprocess.Popen(f'sudo systemctl restart {service_name}
+	', shell=True)
+	
+	query = "DELETE FROM foo WHERE id = '%s'" % user_input
+	result = connection.execute(query) 
+	
+	response = urllib.urlretrieve ("192.168.1.1/example.iso", "example.iso")
+\end{lstlisting}
+
+
+\begin{tikzpicture}[remember picture, overlay, >=stealth']
+\draw[<-, dashed, red, thick] (pic cs:line-gist-2-end) ++(0.5em, 1.0ex) -| +(2.0, 0.6) node[below, comment, thick] {Exec Statement};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-3-end) ++(0.5em, 1.0ex) -| +(5.0, 0.3) node[below, comment, thick] {Bad File Permission};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-6-end) ++(0.5em, 1.0ex) -| +(2.0, -0.2) node[below, comment, thick] {Hard-coded Secret};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-9-end) ++(0.5em, 1.0ex) -| +(8.0, 0.3) node[below, comment, thick] {Empty Password};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-5-end) ++(0.5em, 1.0ex) -| +(5.0, 0.3) node[below, comment, thick] {Hard-coded IP Address Binding};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-12-end) ++(0.5em, 1.0ex) -| +(3.0, 0.3) node[below, comment, thick] {Hard-coded tmp Directory};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-14-end) ++(0.5em, 1.0ex) -| +(5.0, 0.3) node[below, comment, thick] {Ignore Except Block};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-16-end) ++(0.5em, 1.0ex) -| +(5.0, 0.3) node[below, comment, thick] {Debug Set to True in Deployment};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-18-end) ++(0.5em, 1.0ex) -| +(6.0, 0.3) node[below, comment, thick] {No Certificate Validation};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-20-end) ++(0.5em, 1.0ex) -| +(3.0, 0.3) node[below, comment, thick] {Use of HTTP without TLS};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-23-end) ++(0.5em, 1.0ex) -| +(8.0, 0.1) node[below, comment, thick] {Command Injection};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-26-end) ++(0.5em, 1.0ex) -| +(3.0, -0.1) node[below, comment, thick] {Constructing SQL upon Input};
+\draw[<-, dashed, red, thick] (pic cs:line-gist-28-end) ++(0.5em, 1.0ex) -| +(7.0, 0.2) node[below, comment, thick] {No Integirty Check};
+\end{tikzpicture}
+
+
+\end{document}
+
+
+    

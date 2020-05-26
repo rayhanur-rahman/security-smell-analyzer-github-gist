@@ -1,0 +1,50 @@
+/home/brokenquark/Workspace/ICSME19/venv/bin/python /home/brokenquark/Workspace/ICSME19/src/App3.py
+total gists: 5822
+smells: OrderedSet(['shell_injection', 'assert_used', 'empty_password', 'exec_used', 'debug_true', 'hardcoded_interface', 'hardcoded_secret', 'hardcoded_sql', 'hardcoded_tmp', 'no_integrity_check', 'no_cert_validation', 'bad_file_permissions', 'ignore_except_block', 'use_of_http'])
+gists with at least one smells: 2037
+=== GITHUB GIST DATA ===
++----------------------+-----------+---------+------------+
+|        smell         | occurence | density | proportion |
++----------------------+-----------+---------+------------+
+|   shell_injection    |    2372   |   6.10  |   17.71    |
+|     assert_used      |    946    |   2.43  |    5.34    |
+|    empty_password    |     25    |   0.06  |    0.43    |
+|      exec_used       |     11    |   0.03  |    0.17    |
+|      debug_true      |     35    |   0.09  |    0.60    |
+| hardcoded_interface  |     47    |   0.12  |    0.74    |
+|   hardcoded_secret   |    689    |   1.77  |    5.84    |
+|    hardcoded_sql     |     43    |   0.11  |    0.50    |
+|    hardcoded_tmp     |     87    |   0.22  |    1.10    |
+|  no_integrity_check  |     8     |   0.02  |    0.05    |
+|  no_cert_validation  |     11    |   0.03  |    0.09    |
+| bad_file_permissions |     2     |   0.01  |    0.03    |
+| ignore_except_block  |    208    |   0.53  |    2.58    |
+|     use_of_http      |    865    |   2.22  |    8.64    |
+|        TOTAL         |    5349   |  13.76  |   34.99    |
++----------------------+-----------+---------+------------+
+Authors with at least one smell in gists are different than authors with no smell in gists
+however, this difference is, (0.028686732697409678, 'negligible')
+=== GITHUB GIST MANUAL INSPECTION ===
++----------------------+-----------+-----------+--------+
+|        smell         | occurence | precision | recall |
++----------------------+-----------+-----------+--------+
+|   shell_injection    |     86    |    1.00   |  1.00  |
+|     assert_used      |     79    |    1.00   |  1.00  |
+|    empty_password    |     2     |    1.00   |  1.00  |
+|      exec_used       |     4     |    1.00   |  1.00  |
+|      debug_true      |     2     |    1.00   |  1.00  |
+| hardcoded_interface  |     3     |    1.00   |  1.00  |
+|   hardcoded_secret   |     31    |    0.94   |  0.91  |
+|    hardcoded_sql     |     3     |    1.00   |  1.00  |
+|    hardcoded_tmp     |     3     |    1.00   |  1.00  |
+|  no_integrity_check  |     7     |    0.43   |  0.75  |
+|  no_cert_validation  |     1     |    1.00   |  1.00  |
+| bad_file_permissions |     1     |    1.00   |  1.00  |
+| ignore_except_block  |     13    |    1.00   |  1.00  |
+|     use_of_http      |     71    |    1.00   |  1.00  |
+|        TOTAL         |    306    |    0.98   |  0.99  |
++----------------------+-----------+-----------+--------+
+
+Process finished with exit code 0
+
+61 hardcoded passwords
